@@ -1,21 +1,27 @@
 /*
  * Index
  */
-
 import React, { useState, useEffect } from 'react'
 import { store as createStore, view } from 'react-easy-state'
 import axios from 'axios'
 import Navbar from '../components/Navbar'
+import Modal from '../components/Modal'
 
 // store
 const store = createStore({
 
   count: 0, //计数器
+  isModalShow: false,
   place: '定位中...', //当前地点
 
   // 计数器增加
   increment() {
     store.count++
+  },
+
+  showModal(){
+    alert(1)
+    store.isModalShow = true
   },
 
   // 获取位置
@@ -59,14 +65,22 @@ function Count1(props) {
   `
 }
 
+// AddPlanModal
+function AddPlanModal () {
+  return pug /*syntax:pug*/ `
+    button.f4.fixed.bb.vh3(onClick=store.showModal) 显示Modal
+    Modal(title='提示', active=true)
+  `
+}
+AddPlanModal = view(AddPlanModal)
 
 // useStore
 function Count2(props){
- 
+
   useEffect(() => {
     store.getPlace()
   })
- 
+
   return pug/*syntax:pug*/`
 
       //- 计数器
@@ -77,7 +91,6 @@ function Count2(props){
       //- place
       div.p2.m2.j-between
         div.m2.c3 #{store.place}
-        button.f4.fixed.bb.vh3(onClick=store.getPlace) 获取位置
   `
 }
 Count2 = view(Count2)
@@ -85,17 +98,19 @@ Count2 = view(Count2)
 
 // main
 function Main(props) {
-  // alert(a)
+
+  const [active, setActive] = useState(false)
+
   // console.log('props', props)
   return pug/*syntax:pug*/`
 
     Navbar(title='首页', hasBackBtn=false)
-
     div.p4
       Count1(showGreeting, name='xjp')
       Count2
       p #{props.userAgent}
       p #{props.users[0].name}
+    AddPlanModal
   `
 }
 Main.getInitialProps = getInitialProps
