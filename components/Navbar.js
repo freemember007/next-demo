@@ -10,11 +10,11 @@ function Navbar (props) {
     history.go(-1)
   }
 
-  return pug /*syntax:pug*/`
+  return pug/*syntax:pug*/`
 
     section.nav-bar.hairline--bottom(style={zIndex:1})
 
-      if props.hasBackBtn
+      if(props.hasBackBtn)
         div.nav-bar__left(onclick=back)
           i.icon.icon-arrow-left.nav-bar__arrow
           span.nav-bar__text 返回
@@ -24,7 +24,6 @@ function Navbar (props) {
 
       div.nav-bar__right
         | ${props.rightBtn}
-
   `
 }
 
