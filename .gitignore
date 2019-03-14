@@ -1,0 +1,13 @@
+node_modules/
+.nyc_output/
+.next
+.vscode
+coverage/
+dist/
+tmp/
+npm-debug.log*
+.DS_Store
+package-lock.json
+yarn.lock
+*.log
+*.lock
