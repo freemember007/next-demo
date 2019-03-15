@@ -7,13 +7,16 @@ function Modal (props) {
 
   const [active, setActive] = useState(false)
 
-  function toggleModalShow () {
-    alert(2)
-    setActive(!active)
+  useEffect(_ => {
+    setActive(true)
+  }, [props])
+
+  function closeModal () {
+    setActive(false)
   }
 
   return pug /*syntax:pug*/`
-    section.dn(className='block')
+    section.dn(className=active ? 'block' : 'hidden')
 
       //- dialog
       .dialog(style={zIndex: 2037})
@@ -44,13 +47,13 @@ function Modal (props) {
                   input.field__control(type='time', name='plan-etime', placeholder='请输入结束时间')
         //- bottom
         .hairline--top.dialog__footer.dialog__footer--buttons
-          button.button.button--default.button--large.dialog__cancel(onClick=toggleModalShow)
+          button.button.button--default.button--large.dialog__cancel(onClick=closeModal)
             span.button__text 取消
-          button.button.button--default.button--large.dialog__confirm.hairline--left(onClick=toggleModalShow)
+          button.button.button--default.button--large.dialog__confirm.hairline--left(onClick=closeModal)
             span.button__text 确认
 
       //- mask
-      .overlay(onClick=toggleModalShow, style={zIndex: 2036})
+      .overlay(onClick=closeModal, style={zIndex: 2036})
 
     `
 }

@@ -7,21 +7,16 @@ import axios from 'axios'
 import Navbar from '../components/Navbar'
 import Modal from '../components/Modal'
 
+
 // store
 const store = createStore({
 
   count: 0, //计数器
-  isModalShow: false,
   place: '定位中...', //当前地点
 
   // 计数器增加
   increment() {
     store.count++
-  },
-
-  showModal(){
-    alert(1)
-    store.isModalShow = true
   },
 
   // 获取位置
@@ -35,6 +30,7 @@ const store = createStore({
   }
 
 })
+
 
 // getInitialProps
 async function getInitialProps ({ req }) {
@@ -65,14 +61,21 @@ function Count1(props) {
   `
 }
 
+
 // AddPlanModal
 function AddPlanModal () {
+
+  const [active, setActive] = useState(false)
+
   return pug /*syntax:pug*/ `
-    button.f4.fixed.bb.vh3(onClick=store.showModal) 显示Modal
-    Modal(title='提示', active=true)
+
+    button.f4.fixed.bb.vh3(onClick=()=>setActive(true)) 显示Modal
+    div(className=active ? 'block' : 'hidden')
+      Modal(title='提示')
   `
 }
 AddPlanModal = view(AddPlanModal)
+
 
 // useStore
 function Count2(props){
@@ -98,8 +101,6 @@ Count2 = view(Count2)
 
 // main
 function Main(props) {
-
-  const [active, setActive] = useState(false)
 
   // console.log('props', props)
   return pug/*syntax:pug*/`
