@@ -12,17 +12,17 @@ function Navbar (props) {
 
   return pug/*syntax:pug*/`
 
-    section.nav-bar.hairline--bottom(style={zIndex:1})
+    .nav-bar.hairline--bottom(style={zIndex:1})
 
       if(props.hasBackBtn)
-        div.nav-bar__left(onclick=back)
+        .nav-bar__left(onclick=back)
           i.icon.icon-arrow-left.nav-bar__arrow
           span.nav-bar__text 返回
 
-      div.nav-bar__title.ellipsis
+      .nav-bar__title.ellipsis
         | ${props.title}
 
-      div.nav-bar__right
+      .nav-bar__right
         | ${props.rightBtn}
   `
 }

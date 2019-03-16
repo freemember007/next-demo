@@ -10,7 +10,6 @@ import Modal from '../components/Modal'
 
 // store
 const store = createStore({
-
   count: 0, //计数器
   place: '定位中...', //当前地点
 
@@ -44,7 +43,6 @@ async function getInitialProps ({ req }) {
 
 // useHook
 function Count1(props) {
-
   const [count, setCount] = useState(0)
 
   useEffect(() => {
@@ -64,14 +62,12 @@ function Count1(props) {
 
 // AddPlanModal
 function AddPlanModal () {
-
-  const [active, setActive] = useState(false)
+  const [show, setShow] = useState(false)
 
   return pug /*syntax:pug*/ `
 
-    button.f4.fixed.bb.vh3(onClick=()=>setActive(true)) 显示Modal
-    div(className=active ? 'block' : 'hidden')
-      Modal(title='提示')
+    button.f4.fixed.bb.vh3(onClick=()=>setShow(true)) 显示Modal
+    Modal(title='提示', show=show, onHide=()=>setShow(false))
   `
 }
 AddPlanModal = view(AddPlanModal)
@@ -79,7 +75,6 @@ AddPlanModal = view(AddPlanModal)
 
 // useStore
 function Count2(props){
-
   useEffect(() => {
     store.getPlace()
   })
@@ -101,7 +96,6 @@ Count2 = view(Count2)
 
 // main
 function Main(props) {
-
   // console.log('props', props)
   return pug/*syntax:pug*/`
 
