@@ -79,7 +79,7 @@ function AddPlanModal () {
 
   return pug /*syntax:pug*/ `
     button.f4.fixed.bb.vh3(onClick=()=>setShow(true)) 显示Modal
-    Modal(title='提示', show=show, onCancel=()=>setShow(false), onOk=submit)
+    Modal(title='提示' show=show onCancel=()=>setShow(false) onOk=submit)
       form#add-plan-form.form-horizontal
         .cell.field
           .cell__title.field__label
