@@ -1,10 +1,10 @@
 /*
- * PlaceHolder
+ * Placeholder
  */
 import React from 'react'
 
 
-function PlaceHolder (props) {
+function Placeholder (props) {
 
   return pug/*syntax:pug*/`
 
@@ -33,4 +33,4 @@ function PlaceHolder (props) {
   `
 }
 
-export default PlaceHolder
+export default Placeholder

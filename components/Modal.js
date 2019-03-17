@@ -6,7 +6,10 @@ import React from 'react'
 function Modal (props) {
 
   return pug /*syntax:pug*/`
-    section.z1(className=props.show ? 'block fade-enter-active' : 'hidden fade-leave-active ')
+    section.z2(className=props.show ? 'block fade-enter-active' : 'hidden fade-leave-active ')
+
+      //- mask
+      .overlay.z3(onClick=props.onCancel)
 
       //- dialog
       .dialog.z4
@@ -26,8 +29,6 @@ function Modal (props) {
           button.button.button--default.button--large.dialog__confirm.hairline--left(onClick=props.onOk)
             span.button__text 确认
 
-      //- mask
-      .overlay.z3(onClick=props.onCancel)
 
     `
 }

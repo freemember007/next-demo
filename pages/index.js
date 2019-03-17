@@ -6,7 +6,7 @@ import { store as createStore, view } from 'react-easy-state'
 import axios from 'axios'
 import Navbar from '../components/Navbar'
 import Modal from '../components/Modal'
-import PlaceHolder from '../components/PlaceHolder'
+import Placeholder from '../components/Placeholder'
 import { useFormState } from 'react-use-form-state'
 import useTimeout from 'react-use/lib/useTimeout'
 
@@ -135,7 +135,7 @@ function Main(props) {
     .fade-enter-active
       Navbar(title='首页', hasBackBtn=false)
       if !loaded
-        PlaceHolder(css='m2 pt2')
+        Placeholder(css='m2 pt2')
       else
         div.p4
           Count1(showGreeting, name='xjp')
