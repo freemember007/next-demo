@@ -12,7 +12,7 @@ function Navbar (props) {
 
   return pug/*syntax:pug*/`
 
-    .nav-bar.hairline--bottom(style={zIndex:1})
+    .nav-bar.hairline--bottom.z1
 
       if(props.hasBackBtn)
         .nav-bar__left(onclick=back)
