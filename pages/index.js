@@ -56,7 +56,7 @@ function Count1(props) {
 
       if props.showGreeting
         p.greeting.red Hello #{props.name}!
-      button(
+      button.btn(
         onClick=()=>setCount(count+1)
       ) #{count} Click Me
   `
@@ -78,27 +78,42 @@ function AddPlanModal () {
   }
 
   return pug /*syntax:pug*/ `
-    button.f4.fixed.bb.vh3(onClick=()=>setShow(true)) 显示Modal
-    Modal(title='提示' show=show onCancel=()=>setShow(false) onOk=submit)
-      form#add-plan-form.form-horizontal
-        .cell.field
-          .cell__title.field__label
-            span 计划名称
-          .cell__value
-            .field__body
-              input.field__control(...text('title') placeholder='请输入计划名称' autoFocus)
-        .cell.field
-          .cell__title.field__label
-            span 开始时间
-          .cell__value
-            .field__body
-              input.field__control(...time('stime') placeholder='请输入开始时间')
-        .cell.field
-          .cell__title.field__label
-            span 结束时间
-          .cell__value
-            .field__body
-              input.field__control(...time('etime') placeholder='请输入结束时间')
+    button.btn.btn-primary(onClick=()=>setShow(true)) 显示Modal
+    //- Modal(title='提示' show=show onCancel=()=>setShow(false) onOk=submit)
+    form#add-plan-form.form-horizontal
+      .form-group
+        .form-label 计划名称
+        input.form-input(...text('title') placeholder='请输入计划名称' autoFocus)
+      .form-group
+        .form-label 开始时间
+        input.form-input(...time('stime') placeholder='请输入开始时间')
+      .form-group
+        .form-label 结束时间
+        input.form-input(...time('etime') placeholder='请输入结束时间')
+      .form-group
+        label.form-switch
+          input(type="checkbox")
+          i.form-icon
+          | Send me emails with news and tips
+    //- form#add-plan-form.form-horizontal
+    //-   .cell.field
+    //-     .cell__title.field__label
+    //-       span 计划名称
+    //-     .cell__value
+    //-       .field__body
+    //-         input.field__control(...text('title') placeholder='请输入计划名称' autoFocus)
+    //-   .cell.field
+    //-     .cell__title.field__label
+    //-       span 开始时间
+    //-     .cell__value
+    //-       .field__body
+    //-         input.field__control(...time('stime') placeholder='请输入开始时间')
+    //-   .cell.field
+    //-     .cell__title.field__label
+    //-       span 结束时间
+    //-     .cell__value
+    //-       .field__body
+    //-         input.field__control(...time('etime') placeholder='请输入结束时间')
 
   `
 }
@@ -132,7 +147,7 @@ function Main(props) {
 
   return pug/*syntax:pug*/`
 
-    .fade-enter-active
+    .fade-enter-active.container
       Navbar(title='首页', hasBackBtn=false)
       if !loaded
         Placeholder(css='m2 pt2')
