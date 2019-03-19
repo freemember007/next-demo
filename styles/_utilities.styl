@@ -1,3 +1,93 @@
+// Layout
+.container
+  margin-left: auto
+  margin-right: auto
+  padding-left: $layout-spacing
+  padding-right: $layout-spacing
+  width: 100%
+  $grid-spacing = $layout-spacing / ($layout-spacing * 0 + 1) * $html-font-size
+  &.grid-xl
+    max-width: ($grid-spacing * 2 + $size-xl)
+  &.grid-lg
+    max-width: ($grid-spacing * 2 + $size-lg)
+  &.grid-md
+    max-width: ($grid-spacing * 2 + $size-md)
+  &.grid-sm
+    max-width: ($grid-spacing * 2 + $size-sm)
+  &.grid-xs
+    max-width: ($grid-spacing * 2 + $size-xs)
+
+// Responsive grid system
+.columns
+  display: flex
+  flex-wrap: wrap
+  margin-left: -1*$layout-spacing
+  margin-right: -1*$layout-spacing
+  &.col-gapless
+    margin-left: 0
+    margin-right: 0
+    & > .column
+      padding-left: 0
+      padding-right: 0
+  &.col-oneline
+    flex-wrap: nowrap
+    overflow-x: auto
+.column
+  flex: 1
+  max-width: 100%
+  padding-left: $layout-spacing
+  padding-right: $layout-spacing
+  &.col-12,
+  &.col-11,
+  &.col-10,
+  &.col-9,
+  &.col-8,
+  &.col-7,
+  &.col-6,
+  &.col-5,
+  &.col-4,
+  &.col-3,
+  &.col-2,
+  &.col-1,
+  &.col-auto
+    flex: none
+.col-12
+  width: 100%
+.col-11
+  width: 91.66667%
+.col-10
+  width: 83.33333%
+.col-9
+  width: 75%
+.col-8
+  width: 66.66667%
+.col-7
+  width: 58.33333%
+.col-6
+  width: 50%
+.col-5
+  width: 41.66667%
+.col-4
+  width: 33.33333%
+.col-3
+  width: 25%
+.col-2
+  width: 16.66667%
+.col-1
+  width: 8.33333%
+.col-auto
+  flex: 0 0 auto
+  max-width: none
+  width: auto
+.col-mx-auto
+  margin-left: auto
+  margin-right: auto
+.col-ml-auto
+  margin-left: auto
+.col-mr-auto
+  margin-right: auto
+
+
 // Text colors
 text-color-variant(".text-primary", $primary-color)
 text-color-variant(".text-secondary", $secondary-color-dark)
@@ -156,9 +246,13 @@ bg-color-variant(".bg-error", $error-color)
 margin-variant(0, 0)
 margin-variant(1, $unit-1)
 margin-variant(2, $unit-2)
+margin-variant(3, $unit-3)
+margin-variant(4, $unit-4)
 padding-variant(0, 0)
 padding-variant(1, $unit-1)
 padding-variant(2, $unit-2)
+padding-variant(3, $unit-3)
+padding-variant(4, $unit-4)
 // Shapes
 .s-rounded
   border-radius: $border-radius
@@ -201,3 +295,59 @@ padding-variant(2, $unit-2)
   hyphens: auto
   word-break: break-word
   word-wrap: break-word
+
+
+// Media
+// Image responsive
+.img-responsive
+  display: block
+  height: auto
+  max-width: 100%
+// object-fit support is coming to Microsoft Edge
+// https://developer.microsoft.com/en-us/microsoft-edge/platform/status/objectfitandobjectposition/
+.img-fit-cover
+  object-fit: cover
+.img-fit-contain
+  object-fit: contain
+// Video responsive
+.video-responsive
+  display: block
+  overflow: hidden
+  padding: 0
+  position: relative
+  width: 100%
+  &::before
+    content: ""
+    display: block
+    padding-bottom: 56.25%
+    // Default ratio 16:9, you can calculate this value by dividing 9 by 16
+  iframe,
+  object,
+  embed
+    border: 0
+    bottom: 0
+    height: 100%
+    left: 0
+    position: absolute
+    right: 0
+    top: 0
+    width: 100%
+video.video-responsive
+  height: auto
+  max-width: 100%
+  &::before
+    content: none
+.video-responsive-4-3
+  &::before
+    padding-bottom: 75%
+    // Ratio 4:3
+.video-responsive-1-1
+  &::before
+    padding-bottom: 100%
+    // Ratio 1:1
+// Figure
+.figure
+  margin: 0 0 $layout-spacing 0
+  .figure-caption
+    color: $gray-color-dark
+    margin-top: $layout-spacing

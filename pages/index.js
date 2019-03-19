@@ -11,6 +11,7 @@ import { useFormState } from 'react-use-form-state'
 import useTimeout from 'react-use/lib/useTimeout'
 import Button from 'vant/lib/button'
 import Dialog from 'vant/lib/dialog'
+import NavBar from 'vant/lib/nav-bar'
 import { VueWrapper } from 'vuera'
 
 // store
@@ -122,13 +123,13 @@ function Count2(props){
   return pug/*syntax:pug*/`
 
       //- 计数器
-      div.p2.m2
-        div.m2.f3.b.bg-primary.br3 #{store.count}
+      div
+        div.my2.p2.f3.b.bg-primary.br3 #{store.count}
         button.f4.fixed.bb.vh3(onClick=store.increment) +
 
       //- place
-      div.p2.m2.j-between
-        div.m2.c3 #{store.place}
+      div.my2.j-between
+        div.c3 #{store.place}
   `
 }
 Count2 = view(Count2)
@@ -140,12 +141,14 @@ function Main(props) {
 
   return pug/*syntax:pug*/`
 
+    VueWrapper(component=NavBar title='首页' left-text='返回' left-arrow='' @click-left='onClickLeft' @click-right='onClickRight')
     .fade-enter-active.container
-      Navbar(title='首页', hasBackBtn=false)
+      //- Navbar(title='首页', hasBackBtn=false)
+
       if !loaded
         Placeholder(css='m2 pt2')
       else
-        div.p4
+        div.pt2
           Count1(showGreeting, name='xjp')
           Count2
           p #{props.userAgent}
