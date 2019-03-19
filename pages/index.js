@@ -110,7 +110,7 @@ function AddPlanModal () {
           input(type="checkbox")
           i.form-icon
           | Send me emails with news and tips
-      VueWrapper(component=Field, ...time('name') label='用户名' right-icon='question-o' placeholder='请输入用户名')
+      VueWrapper(component=Field, ...text('name') label='用户名' right-icon='question-o' placeholder='请输入用户名')
       -
         const handleSubmit = () => {
           alert(JSON.stringify(formState))
