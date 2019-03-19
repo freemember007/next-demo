@@ -72,13 +72,14 @@ function AddPlanModal () {
     etime: '10:30',
   })
 
-  const submit = () => {
-    console.log(formState.values)
-    setShow(false)
-  }
 
   return pug /*syntax:pug*/ `
     button.f4.fixed.bb.vh3(onClick=()=>setShow(true)) 显示Modal
+    -
+      const submit = () => {
+        console.log(formState.values)
+        setShow(false)
+      }
     Modal(title='提示' show=show onCancel=()=>setShow(false) onOk=submit)
       form#add-plan-form.form-horizontal
         .cell.field
