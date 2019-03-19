@@ -12,6 +12,7 @@ import useTimeout from 'react-use/lib/useTimeout'
 import Button from 'vant/lib/button'
 import Dialog from 'vant/lib/dialog'
 import NavBar from 'vant/lib/nav-bar'
+import Field from 'vant/lib/field'
 import { VueWrapper } from 'vuera'
 
 // store
@@ -109,6 +110,13 @@ function AddPlanModal () {
           input(type="checkbox")
           i.form-icon
           | Send me emails with news and tips
+      VueWrapper(component=Field, ...time('name') label='用户名' right-icon='question-o' placeholder='请输入用户名')
+      -
+        const handleSubmit = () => {
+          alert(JSON.stringify(formState))
+        }
+      button.m2.btn.btn-primary(onClick=handleSubmit) 提交
+
   `
 }
 AddPlanModal = view(AddPlanModal)
