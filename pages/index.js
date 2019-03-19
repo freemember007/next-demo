@@ -9,7 +9,9 @@ import Modal from '../components/Modal'
 import Placeholder from '../components/Placeholder'
 import { useFormState } from 'react-use-form-state'
 import useTimeout from 'react-use/lib/useTimeout'
-
+import Button from 'vant/lib/button'
+import { VueWrapper } from 'vuera'
+import { VueInReact } from 'vuera'
 
 // store
 const store = createStore({
@@ -47,16 +49,17 @@ async function getInitialProps ({ req }) {
 // useHook
 function Count1(props) {
   const [count, setCount] = useState(0)
+  const VButton = VueInReact(Button)
 
   useEffect(() => {
     document.title = `You clicked ${count} times`
   })
 
-  return pug/*syntax:pug*/`
-
+  return pug /*syntax:pug*/ `
       if props.showGreeting
+      VButton(type="primary", disabled) aaa
         p.greeting.red Hello #{props.name}!
-      button(
+      button.btn(
         onClick=()=>setCount(count+1)
       ) #{count} Click Me
   `
@@ -133,7 +136,7 @@ function Main(props) {
 
   return pug/*syntax:pug*/`
 
-    .fade-enter-active
+    .fade-enter-active.container
       Navbar(title='首页', hasBackBtn=false)
       if !loaded
         Placeholder(css='m2 pt2')

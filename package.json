@@ -18,7 +18,10 @@
     "react-dom": "^16.8.4",
     "react-easy-state": "^6.1.1",
     "react-use": "^5.7.1",
-    "react-use-form-state": "^0.8.0"
+    "react-use-form-state": "^0.8.0",
+    "vant": "^1.6.10",
+    "vue": "^2.6.9",
+    "vuera": "^0.2.3"
   },
   "devDependencies": {
     "@zeit/next-stylus": "^1.0.1",
