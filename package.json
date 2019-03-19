@@ -24,9 +24,11 @@
     "vuera": "^0.2.3"
   },
   "devDependencies": {
+    "@zeit/next-less": "^1.0.1",
     "@zeit/next-stylus": "^1.0.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-pug": "^7.0.0",
+    "less": "^3.9.0",
     "stylus": "^0.54.5"
   }
 }
