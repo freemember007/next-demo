@@ -17,13 +17,17 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-easy-state": "^6.1.1",
+    "react-hooks-global-state": "^0.14.0",
     "react-use": "^5.7.1",
     "react-use-form-state": "^0.8.0",
+    "smox": "^2.5.5",
+    "stamen": "^1.11.0",
     "vant": "^1.6.10",
     "vue": "^2.6.9",
     "vuera": "^0.2.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-stylus": "^1.0.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",

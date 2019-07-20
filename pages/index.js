@@ -14,8 +14,41 @@ import Dialog from 'vant/lib/dialog'
 import NavBar from 'vant/lib/nav-bar'
 import Field from 'vant/lib/field'
 import { VueWrapper } from 'vuera'
+import { createGlobalState } from 'react-hooks-global-state'
+import { createStore as createStoreStamen } from 'stamen'
 
-// store
+// reactGlobalStateHook
+const { GlobalStateProvider, useGlobalState } = createGlobalState({
+  count: 0,
+  place: '定位中...',
+})
+
+// stamen
+const { useStore, dispatch } = createStoreStamen({
+  state: {
+    count: 10,
+  },
+  reducers: {
+    increment(state) {
+      state.count++
+    },
+    decrement(state) {
+      state.count--
+    },
+  },
+  effects: {
+    async asyncIncrement() {
+      await new Promise(resolve => {
+        setTimeout(() => {
+          resolve()
+        }, 1000)
+      })
+      dispatch(A => A.increment)
+    },
+  },
+})
+
+// reactEasyState
 const store = createStore({
   count: 0, //计数器
   place: '定位中...', //当前地点
@@ -55,7 +88,7 @@ function Count1(props) {
     document.title = `You clicked ${count} times`
   })
 
-  return pug /*syntax:pug*/ `
+  return pug  `
     VueWrapper(component=Button,type="primary") I'm Vant!
     if props.showGreeting
       p.greeting.red Hello #{props.name}!
@@ -75,7 +108,7 @@ function AddPlanModal () {
     etime: '10:30',
   })
 
-  return pug /*syntax:pug*/ `
+  return pug  `
     //- button.btn.btn-primary(onClick=()=>setShow(true)) 显示Modal
     -
       const handleClick = () =>  {
@@ -124,16 +157,27 @@ AddPlanModal = view(AddPlanModal)
 
 // useStore
 function Count2(props){
-  useEffect(() => {
-    store.getPlace()
-  })
 
-  return pug/*syntax:pug*/`
+  const [count, updateCount] = useGlobalState('count')
+  const [place, updatePlace] = useGlobalState('place')
+
+  const countStamen = useStore(S => S.count)
+
+  useEffect(() => {
+    updateCount(v => v + 100)
+    store.getPlace()
+  }, [])
+
+  return pug`
 
       //- 计数器
       div
         div.my2.p2.f3.b.bg-primary.br3 #{store.count}
-        button.f4.fixed.bb.vh3(onClick=store.increment) +
+        div.my2.p2.f3.b.bg-primary.br3 #{count}
+        div.my2.p2.f3.b.bg-primary.br3 #{countStamen}
+        button.f4.fixed.bb.vh3(onClick= ()=>dispatch(A => A.asyncIncrement)) stamen+
+        button.f4.fixed.bb.vh3(onClick= store.increment) easystate+
+        button.f4.fixed.bb.vh3(onClick= ()=>updateCount(v => v + 100)) globalstate+
 
       //- place
       div.my2.j-between
@@ -147,21 +191,24 @@ Count2 = view(Count2)
 function Main(props) {
   const loaded = useTimeout(1000)
 
-  return pug/*syntax:pug*/`
+  return pug`
 
-    VueWrapper(component=NavBar title='首页' left-text='返回' left-arrow='' @click-left='onClickLeft' @click-right='onClickRight')
-    .fade-enter-active.container
-      //- Navbar(title='首页', hasBackBtn=false)
+    GlobalStateProvider
 
-      if !loaded
-        Placeholder(css='m2 pt2')
-      else
-        div.pt2
-          Count1(showGreeting, name='xjp')
-          Count2
-          p #{props.userAgent}
-          p #{props.users[0].name}
-        AddPlanModal
+      VueWrapper(component=NavBar title='首页' left-text='返回' left-arrow='' @click-left='onClickLeft' @click-right='onClickRight')
+
+      .fade-enter-active.container
+        //- Navbar(title='首页', hasBackBtn=false)
+
+        if !loaded
+          Placeholder(css='m2 pt2')
+        else
+          div.pt2
+            //- Count1(showGreeting, name='xjp')
+            Count2
+          //-   p #{props.userAgent}
+          //-   p #{props.users[0].name}
+          //- AddPlanModal
   `
 }
 Main.getInitialProps = getInitialProps

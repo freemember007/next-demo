@@ -2,6 +2,7 @@
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "transform-react-pug",
-    "transform-react-jsx"
+    "transform-react-jsx",
+    "@babel/plugin-proposal-class-properties"
   ]
 }
