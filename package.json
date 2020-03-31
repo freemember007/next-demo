@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "next": "^8.0.3",
+    "next": "^9.3.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-easy-state": "^6.1.1",
